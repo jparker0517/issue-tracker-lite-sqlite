@@ -1,3 +1,6 @@
+![Node CI](https://github.com/jparker0517/issue-tracker-lite-sqlite/actions/workflows/node-ci.yml/badge.svg)
+
+
 # Issue Tracker Lite – SQLite + Tests
 
 A small full‑stack JS app with persistent storage using **SQLite** and API tests using **Jest + Supertest**.
