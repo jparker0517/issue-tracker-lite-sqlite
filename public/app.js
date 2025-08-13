@@ -10,38 +10,62 @@ async function fetchIssues() {
 }
 
 function render(issues) {
+  const listEl = document.getElementById('list');
   listEl.innerHTML = '';
+
   if (!issues.length) {
     listEl.innerHTML = '<p>No issues yet. Add one above.</p>';
     return;
   }
-  issues.forEach(issue => {
+
+  issues.forEach((issue) => {
     const div = document.createElement('div');
     div.className = 'issue';
     div.innerHTML = `
-      <div class="${issue.resolved ? 'resolved' : ''}"><strong>${escapeHtml(issue.title)}</strong></div>
+      <div class="${issue.resolved ? 'resolved' : ''}">
+        <strong>${escapeHtml(issue.title)}</strong>
+      </div>
       <div>${escapeHtml(issue.description)}</div>
       <div class="meta">Priority: ${issue.priority} • Created: ${new Date(issue.createdAt).toLocaleString()}</div>
       <div class="actions">
-        <button data-id="${issue.id}" data-action="toggle">${issue.resolved ? 'Reopen' : 'Resolve'}</button>
-        <button data-id="${issue.id}" data-action="delete" data-title="${escapeHtml(issue.title)}">Delete</button>
+        <button data-id="${issue.id}" data-action="toggle">
+          ${issue.resolved ? 'Reopen' : 'Resolve'}
+        </button>
+        <button data-id="${issue.id}" data-action="delete" data-title="${escapeHtml(issue.title)}">
+          Delete
+        </button>
       </div>
     `;
+
+    // One click handler per card
     div.addEventListener('click', async (e) => {
       const btn = e.target.closest('button');
       if (!btn) return;
+
       const id = btn.getAttribute('data-id');
       const action = btn.getAttribute('data-action');
       const title = btn.getAttribute('data-title');
-      if (action === 'toggle') {
-        await fetch(`${API}/${id}`, { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify({}) });
-      } else if (action === 'delete') {
-        const ok = window.confirm(`Delete "${title || 'this issue'}"?`);
-+       if (!ok) return;
-        await fetch(`${API}/${id}`, { method: 'DELETE' });
+
+      try {
+        if (action === 'toggle') {
+          await fetch(`${API}/${id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({})
+          });
+        } else if (action === 'delete') {
+          const ok = window.confirm(`Delete "${title || 'this issue'}"?`);
+          if (!ok) return;
+          await fetch(`${API}/${id}`, { method: 'DELETE' });
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Request failed. Please try again.');
       }
+
       fetchIssues();
     });
+
     listEl.appendChild(div);
   });
 }
