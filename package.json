@@ -1,0 +1,29 @@
+{
+  "name": "issue-tracker-lite-sqlite",
+  "version": "1.0.0",
+  "description": "Issue Tracker Lite with SQLite persistence + Jest tests",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "express",
+    "sqlite3",
+    "jest",
+    "supertest",
+    "crud"
+  ],
+  "author": "Joshua Parker",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
