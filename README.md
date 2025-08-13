@@ -1,4 +1,4 @@
-![CI](https://github.com/jparker0517/issue-tracker-lite-sqlite/actions/workflows/ci.yml/badge.svg)
+![Node CI](https://github.com/jparker0517/issue-tracker-lite-sqlite/actions/workflows/node-ci.yml/badge.svg?branch=main)
 
 # 📋 Issue Tracker Lite (SQLite)
 
@@ -7,7 +7,7 @@ A lightweight full-stack issue tracking application built with **Node.js**, **Ex
 ---
 
 ## 🚀 Live Demo  
-**[Try it on Render](https://your-live-demo-link.com)**  
+**[Try it on Render](https://issue-tracker-lite.onrender.com)**  
 
 ---
 
