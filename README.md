@@ -1,38 +1,96 @@
-![Node CI](https://github.com/jparker0517/issue-tracker-lite-sqlite/actions/workflows/node-ci.yml/badge.svg)
+![CI](https://github.com/jparker0517/issue-tracker-lite-sqlite/actions/workflows/ci.yml/badge.svg)
 
+# 📋 Issue Tracker Lite (SQLite)
 
-# Issue Tracker Lite – SQLite + Tests
+A lightweight full-stack issue tracking application built with **Node.js**, **Express**, and **SQLite**. Designed to demonstrate clean architecture, professional workflows, and deployment best practices.
 
-A small full‑stack JS app with persistent storage using **SQLite** and API tests using **Jest + Supertest**.
+---
 
-## Live Demo
-https://issue-tracker-lite.onrender.com
+## 🚀 Live Demo  
+**[Try it on Render](https://your-live-demo-link.com)**  
 
+---
 
-## Features
-- List / Create / Toggle Resolved / Delete issues
-- SQLite persistence (default file `data.db`)
-- Jest + Supertest API tests
-- Vanilla JS frontend
-- Architecture + request lifecycle diagrams included
+## 📌 Features
+- **Create, Read, Update, and Delete** issues
+- **Persistent storage** with SQLite  
+- **RESTful API** structure  
+- Simple, intuitive interface for quick issue tracking  
+- **Fully tested** with automated CI on every push  
 
-## Run
+---
+
+## 🛠 Tech Stack
+**Frontend:**  
+- HTML5, CSS3, Vanilla JavaScript
+
+**Backend:**  
+- Node.js  
+- Express.js  
+- SQLite  
+
+**DevOps / Tooling:**  
+- GitHub Actions (CI)  
+- ESLint for code quality  
+- npm for dependency management  
+
+---
+
+## ⚙️ Installation & Setup
+
+**1. Clone the repository**
 ```bash
-npm install
-npm start
-# http://localhost:3000
+git clone https://github.com/jparker0517/issue-tracker-lite-sqlite.git
+cd issue-tracker-lite-sqlite
 ```
 
-## Tests
+**2. Install dependencies**
+```bash
+npm install
+```
+
+**3. Run locally**
+```bash
+npm start
+```
+
+**4. Run tests**
 ```bash
 npm test
 ```
 
-## API
-- `GET /api/issues` → list
-- `POST /api/issues` → create `{ title, description, priority }`
-- `PATCH /api/issues/:id` → toggle or set `{ resolved?: boolean }`
-- `DELETE /api/issues/:id` → remove
+---
 
-## How It Works (Architecture + Request Lifecycle)
-See the images in the repo and the snippet in `README_how_it_works_snippet.md`.
+## 🧪 Continuous Integration
+This project uses **GitHub Actions** for automated testing:  
+- Runs on Node 20  
+- Caches dependencies for faster builds  
+- Executes unit tests for backend logic  
+
+---
+
+## 📂 Project Structure
+```
+issue-tracker-lite-sqlite/
+│
+├── public/           # Static frontend files
+├── routes/           # API endpoints
+├── tests/            # Automated tests
+├── .github/workflows # CI/CD config
+├── server.js         # Entry point
+└── README.md
+```
+
+---
+
+## 📝 What I Learned
+- Setting up a complete CI pipeline with **GitHub Actions**  
+- Implementing REST APIs with Express and SQLite  
+- Managing dependencies and environment consistency with lockfiles  
+- Writing clear, maintainable code with linting and tests  
+- Deploying to a live environment for instant access  
+
+---
+
+## 📜 License
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
