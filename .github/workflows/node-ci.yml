@@ -1,25 +1,42 @@
 name: Node CI
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
-defaults:
-  run:
-    working-directory: .
-
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
           cache-dependency-path: package-lock.json
-      - run: npm ci || npm install
-      - run: npm test --if-present
-      - run: npm run lint --if-present
 
+      - name: Print versions
+        run: |
+          node -v
+          npm -v
+
+      # Use lockfile if present; otherwise fall back to npm install
+      - name: Install deps
+        run: npm ci || npm install
+
+      # Run tests in-band to avoid open-handle flakes
+      - name: Run tests
+        env:
+          CI: true
+          DB_FILE: ':memory:'
+        run: npm test -- --runInBand
+
+      # Optional lint step (only runs if you add a "lint" script)
+      - name: Lint (if present)
+        run: npm run lint --if-present
