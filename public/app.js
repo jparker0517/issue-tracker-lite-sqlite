@@ -24,7 +24,7 @@ function render(issues) {
       <div class="meta">Priority: ${issue.priority} • Created: ${new Date(issue.createdAt).toLocaleString()}</div>
       <div class="actions">
         <button data-id="${issue.id}" data-action="toggle">${issue.resolved ? 'Reopen' : 'Resolve'}</button>
-        <button data-id="${issue.id}" data-action="delete">Delete</button>
+        <button data-id="${issue.id}" data-action="delete" data-title="${escapeHtml(issue.title)}">Delete</button>
       </div>
     `;
     div.addEventListener('click', async (e) => {
@@ -32,9 +32,12 @@ function render(issues) {
       if (!btn) return;
       const id = btn.getAttribute('data-id');
       const action = btn.getAttribute('data-action');
+      const title = btn.getAttribute('data-title');
       if (action === 'toggle') {
         await fetch(`${API}/${id}`, { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify({}) });
       } else if (action === 'delete') {
+        const ok = window.confirm(`Delete "${title || 'this issue'}"?`);
++       if (!ok) return;
         await fetch(`${API}/${id}`, { method: 'DELETE' });
       }
       fetchIssues();
