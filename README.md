@@ -3,7 +3,8 @@
 A small full‑stack JS app with persistent storage using **SQLite** and API tests using **Jest + Supertest**.
 
 ## Live Demo
-Add your Render URL here after deploying.
+https://issue-tracker-lite.onrender.com
+
 
 ## Features
 - List / Create / Toggle Resolved / Delete issues
